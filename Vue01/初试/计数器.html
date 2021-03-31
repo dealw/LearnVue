@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{item}}</h1>
+    <h2>当前数字:{{counter}}</h2>
+    <button @click="add">+</button>
+    <button @click="subs">-</button>
+</div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const app=new Vue({
+        el:'#app',
+        data:{
+            item:'计数器',
+            counter:0
+        },
+        methods:{
+            add:function (){
+                if (this.counter==10){
+                    alert("不能再加了")
+                }else {
+                    this.counter++;
+                }
+            },
+            subs:function (){
+                if (this.counter==-10){
+                    alert("不能再减了")
+                }else {
+                    this.counter--;
+                }
+            }
+        }
+    })
+</script>
+</html>
