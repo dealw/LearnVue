@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <img v-bind:src="imgurl" alt="">
+  <a v-bind:href="povertyUrl">扶贫网</a>
+  <img :src="imgurl" alt="">
+  <a :href="povertyUrl">扶贫网</a>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      imgurl: 'https://img.alicdn.com/bao/uploaded/i2/683570451/O1CN01S9RxRx1FCbIRMmcPI_!!683570451.jpg_400x400q90.jpg_.webp',
+      povertyUrl: 'http://49.234.138.76/Poverty'
+
+    }
+  })
+</script>
+</body>
+</html>

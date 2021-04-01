@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+      .red{
+          color: red;
+      }
+      .blue{
+          color: blue;
+      }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h2 :class="[red]">红色的字</h2>
+  <h2 :class="getClass()">蓝色的字</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      red:'red',
+      blue: 'blue'
+    },
+    methods:{
+      getClass:function (){
+        return [this.blue]
+      }
+    }
+  })
+</script>
+</body>
+</html>

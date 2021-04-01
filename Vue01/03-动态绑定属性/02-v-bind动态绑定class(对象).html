@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .red{
+        color: red;
+    }
+    .blue{
+        color: blue;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h2 :class="{red: isRed,blue: isBlue}">会变色的字</h2>
+  <h2 :class="getClass()">会变色的字</h2>
+  <button @click="seeBlue">变蓝</button>
+  <button @click="seeRed">变红</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      isRed: false,
+      isBlue: false
+    },
+    methods:{
+      seeBlue: function (){
+        this.isBlue=true;
+        this.isRed=false;
+      },
+      seeRed: function (){
+        this.isBlue=false;
+        this.isRed=true;
+      },
+      getClass: function (){
+        return {red: this.isRed,blue: this.isBlue};
+      }
+    }
+  })
+</script>
+</body>
+</html>

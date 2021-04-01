@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  [v-cloak]{
+      display: none;
+  }
+</style>
+<body>
+<div id="app" v-cloak>
+  <h2>{{msg}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  //当Vue解析到DOM时会去除v-cloak属性
+  //毕设中的贫困申请开放可以用到
+  setTimeout(function (){
+    const app = new Vue({
+      el: '#app',
+      data: {
+        msg: '你好'
+      }
+    })
+  },1000)
+
+</script>
+</body>
+</html>
