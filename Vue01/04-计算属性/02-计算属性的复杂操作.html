@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="book in books">{{'id:' + book.id + ' 书名:' + book.name + ' 价格:' + book.price}}</li>
+  </ul>
+  <h3 :style="{fontSize:'30px'}">总价:{{sum}}</h3>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      books: [
+        {id: 111, name: '漫画书', price: 88},
+        {id: 132, name: '语文书', price: 68},
+        {id: 121, name: '数学书', price: 43},
+        {id: 113, name: '英语书', price: 53}
+      ]
+    },
+    computed: {
+      sum() {
+        let result=0;
+        for (let book of this.books) {
+          result += book.price;
+        }
+        return result;
+      }
+    }
+  })
+</script>
+</body>
+</html>
