@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+<!--加key是为了提高li的复用-->
+<!--因为在操作数组的时候如插入元素 如果不加入key则他从插入点开始后面的元素都替换一次
+  如果加入key则只是新建了一个li插入的指定位置 原来的li会得到复用 key的值应该和li的值有关系
+  所有应该是item而不是index
+-->
+    <li v-for="item in letters" :key="item">{{item}}</li>
+  </ul>
+  <button @click="btnClick">修改</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      letters:['c','b','a','d']
+    },
+    methods:{
+      btnClick(){
+      // 修改数组能响应式变化的方法
+      //  1.push 往数组后面加入元素
+        this.letters.push('e');
+        this.letters.push('e','g','f');
+      //  2.pop 删除最后一个元素
+        this.letters.pop();
+      //  3.删除头部添加元素
+        this.letters.shift();
+      //  4.数组头部添加元素
+        this.letters.unshift('aa');
+        this.letters.unshift('aa','bb','cc');
+      //  5.删除、插入、替换元素
+      //  删除：第一个参数是开始的位置，第二个参数是删除的个数 不填就是从开始位置删除所有
+        this.letters.splice(1,2);
+        this.letters.splice(1);
+      //  插入:第二个参数是0代表不删除，第三个参数及以后代表插入的元素
+        this.letters.splice(1,0,'ddd','aaa','abc')
+      //  替换元素：第二个参数是要替换几个 第三个及以后是替换后的元素
+        this.letters.splice(2,1,'ccc','aaa')
+      //  6.元素排序
+        this.letters.sort();
+      //  7.翻转元素顺序
+        this.letters.reverse();
+
+      //  修改数组不能响应式变化的方法
+      //  直接根据索引修改时不能发生变化的
+        this.letters[1]='f';
+      //  可以通过以下两种方法修改
+        this.letters.splice(1,1,'f');
+        Vue.set(this.letters,1,'f');
+      }
+    }
+  })
+</script>
+</body>
+</html>

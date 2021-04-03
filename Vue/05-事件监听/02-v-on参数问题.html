@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--调用无参方法可以省略括号-->
+  <button @click="btn1Click()">按钮1</button>
+  <button @click="btn2Click">按钮2</button>
+  <button @click="btn3Click(123)">按钮3</button>
+<!--方法需要参数而调用的时候写括号且不传参的就是undefined-->
+  <button @click="btn4Click()">按钮4</button>
+<!--方法需要参数而调用的时候不写括号不传参的就是event事件-->
+  <button @click="btn5Click">按钮5</button>
+<!--想要普通参数和event参数同时被传入的时候event参数前要加$ 不然会被认为是变量-->
+  <button @click="btn6Click(123,$event)">按钮6</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      msg: '你好'
+    },
+    methods:{
+      btn1Click(){
+        alert("按钮1被点击");
+      },
+      btn2Click(){
+        alert("按钮2被点击");
+      },
+      btn3Click(prop){
+        alert("按钮3被点击"+prop);
+      },
+      btn4Click(event){
+        alert("按钮4被点击"+event);
+      },
+      btn5Click(event){
+        alert("按钮5被点击"+event);
+      },
+      btn6Click(prop,event){
+        alert("按钮6被点击 prop:"+prop+event);
+      }
+    }
+  })
+</script>
+</body>
+</html>

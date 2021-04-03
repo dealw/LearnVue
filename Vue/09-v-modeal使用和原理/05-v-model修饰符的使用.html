@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--延迟加载 按回车或者输入框失去焦点时才会往回绑定-->
+  <input type="text" v-model.lazy="message">
+  <h2>{{message}}</h2>
+  <br>
+<!--v-model在回绑的时候会将所有类型转为String .number的作用是将回绑的类型设置为number数字-->
+  <input type="number" v-model.number="age">
+  <h2>{{typeof age}} {{age}}</h2>
+  <br>
+  <input type="text" v-model.trim="words">
+  <h2>{{words}}</h2>
+  <br>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      age: 0,
+      words: ''
+    }
+  })
+</script>
+</body>
+</html>

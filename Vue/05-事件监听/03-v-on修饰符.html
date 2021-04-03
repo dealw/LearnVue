@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <div @click="divClick">
+    xxxxxxxxxxxx
+<!--阻止冒泡.stop 在点按钮的时候div的点击事件不会被触发-->
+    <button @click.stop="btn1Click">按钮1</button>
+  </div>
+  <form action="xxx">
+<!--阻止默认事件 .prevent 加在这里是阻止input标签submit的默认事件-->
+    <input type="submit" value="提交" @click.prevent="submitClick">
+  </form>
+<!--键盘别名监听 如.enter监听回车键-->
+  <input @keyup.enter="keyUp"></input>
+<!--.once代表只能被点击一次-->
+  <button @click.once="btn2Click">按钮2</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      msg: '你好'
+    },
+    methods:{
+      divClick(){
+        alert("div被点击")
+      },
+      btn1Click() {
+        alert("按钮1被点击")
+      },
+      submitClick(){
+        alert("提交按钮被点击")
+      },
+      keyUp(){
+        alert("回车键抬起")
+      },
+      btn2Click() {
+        alert("按钮2被点击")
+      }
+    }
+  })
+</script>
+</body>
+</html>

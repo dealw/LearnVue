@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn2></cpn2>
+  <cpn1></cpn1>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+// 组件模板在构造时外部一共只能有一个标签正如现在所写的被一个div包围
+  const cpnC1 = Vue.extend({
+    template: `
+    <div>
+    <h2>我是标题1</h2>
+    <h3>我是内容11111</h3>
+    </div>
+    `
+  })
+  //在cpnC2中注册cpnC1 namecpnC1就是子组件cpnC2就是父组件
+  const cpnC2 = Vue.extend({
+    template: `
+
+      <h2>我是标题2</h2>
+      <h3>我是内容22222</h3>
+      <cpn1></cpn1>
+
+    `,
+    components: {
+      cpn1: cpnC1
+    }
+  })
+  //在vue实例中注册cpnC2那么就只能在实例DOM中使用cpnC2 因为cpnC1在cpnC2作用域中注册而没有在vue实例中注册
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn2: cpnC2
+    }
+  })
+</script>
+</body>
+</html>
