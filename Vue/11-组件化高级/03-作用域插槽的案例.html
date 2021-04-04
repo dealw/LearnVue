@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--显示格式由父组件决定 内容由子组件决定-->
+  <cpn></cpn>
+  <cpn>
+<!--slot-scop代表引用slot作用域 abc是起的名字 下面用名称.data(data在模板中定义好) 然后就可以取出指定的数据了-->
+    <h2 slot-scope="abc">
+    <span>{{abc.dataabc.join('-')}}</span>
+    </h2>
+  </cpn>
+</div>
+<template id="cpn">
+  <div>
+    <slot :dataabc="pLanguage">
+      <ul>
+        <li v-for="item in pLanguage">{{item}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            pLanguage: ['java', 'javaScript', 'Python', 'C++']
+          }
+        }
+      }
+    }
+
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn :cmovies="movies" :cmessage="message"></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <h2>{{cmessage}}</h2>
+    <ul>
+      <li v-for="movie in cmovies">{{movie}}</li>
+    </ul>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: '#cpn',
+    //父子传参的数组写法 里面的每个元素都是变量而不是字符串
+    // props: ['cmovies','cmessage']
+    //对象写法 key是变量名 value是变量的类型
+    // props:{
+    //   cmovies : Array,
+    //   cmessage: String
+    // }
+    //对象写法 每个变量拿出来单独是一个对象 里面有默认值和类型
+    props:
+        {
+          cmovies: {
+            type: Array,
+            default(){
+              return ['aa', 'bb']
+             }
+             //不同的default写法根据vue的不同版本来写
+             // default:['aa', 'bb']
+          },
+          cmessage: {
+            type: String,
+            default: '默认文字'
+          }
+        }
+  }
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      movies: ['海王', '海贼王', '海尔兄弟']
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+  {{message}}
+</div>
+<template id="cpn">
+  <div>
+    <h2>我是cpn组件</h2>
+    <h3>{{name}}</h3>
+    <son></son>
+  </div>
+</template>
+<template id="son">
+  <div>
+    <h2>我是cpn的子组件</h2>
+    <button @click="btnClick">按钮</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components:{
+      cpn:{
+        template :'#cpn',
+        data(){
+          return {
+            name:'ougaho'
+          }
+        },
+        components:{
+          son:{
+            template: '#son',
+            methods:{
+              btnClick(){
+                //$parent获取父组件(不常用 因为增加了耦合性 在复用的时候可能父组件不同也可能没有)
+                console.log(this.$parent.name);
+                //$root 获取根组件 这里根组件就是Vue实例
+                console.log(this.$root.message);
+              }
+            }
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>

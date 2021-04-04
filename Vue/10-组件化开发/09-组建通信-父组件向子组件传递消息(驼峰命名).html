@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--这里传值的时候若props中变量的命名是驼峰 那么大写字母要用（-小写）转换-->
+  <cpn :c-info="info" :child-receive-message="message"></cpn>
+</div>
+<template id="cpn">
+  <div>
+    <h2>{{cInfo}}</h2>
+    <h2>{{childReceiveMessage}}</h2>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const cpn = {
+    template: '#cpn',
+    props: {
+      cInfo: {
+        type: Object,
+        default() {
+          return {};
+        }
+      },
+      childReceiveMessage: {
+        type: String,
+        default: 'aaa'
+      }
+    }
+  }
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      info: {
+        name: 'deal',
+        age: '22',
+        height: '178'
+      }
+    },
+    components:{
+      cpn
+    }
+  })
+</script>
+</body>
+</html>

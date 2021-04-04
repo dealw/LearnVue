@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--插槽
+1.默认插槽
+2.替换插槽
+-->
+<div id="app">
+  <cpn></cpn>
+  <cpn><p>替换按钮</p></cpn>
+  <cpn></cpn>
+  <cpn>
+    <h2>替换按钮1</h2>
+    <h2>替换按钮2</h2>
+    <h3>替换按钮3</h3>
+  </cpn>
+</div>
+<template id="cpn">
+  <div>
+    <h2>我是标题</h2>
+    <h3>我是内容</h3>
+    <slot><button>按钮</button></slot>
+    <br>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components:{
+      cpn:{template: '#cpn'}
+    }
+  })
+</script>
+</body>
+</html>
